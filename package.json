@@ -17,6 +17,6 @@
   "author": "Zhen Wang <z@zmxv.com> (http://blog.zmxv.com)",
   "license": "MIT",
   "peerDependencies": {
-    "react-native": ">=0.8.0"
+    "react-native": ">=0.15.0"
   }
 }
