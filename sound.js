@@ -27,7 +27,6 @@ function Sound(filename, basePath, onError) {
   (async function() {
     try {
       let result = await RNSound.prepare(self._filename, self._key);
-      console.log(result);
       if (result) {
         if (typeof result.duration === 'number') {
           self._duration = result.duration;
