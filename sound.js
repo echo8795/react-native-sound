@@ -23,32 +23,19 @@ function Sound(filename, basePath, onError) {
   this._volume = 1;
   this._pan = 0;
   this._numberOfLoops = 0;
-  // RNSound.prepare(this._filename, this._key, (error, props) => {
-  //   if (props) {
-  //     if (typeof props.duration === 'number') {
-  //       this._duration = props.duration;
-  //     }
-  //     if (typeof props.numberOfChannels === 'number') {
-  //       this._numberOfChannels = props.numberOfChannels;
-  //     }
-  //   }
-  //   if (error === null) {
-  //     this._loaded = true;
-  //   }
-  //   onError && onError(error);
-  // });
   let self = this;
   (async function() {
     try {
       let result = await RNSound.prepare(self._filename, self._key);
+      console.log(result);
       if (result) {
         if (typeof result.duration === 'number') {
-          this._duration = props.duration;
+          self._duration = result.duration;
         }
-        if (typeof props.numberOfChannels === 'number') {
-          this._numberOfChannels = props.numberOfChannels;
+        if (typeof result.numberOfChannels === 'number') {
+          self._numberOfChannels = result.numberOfChannels;
         }
-        this._loaded = true;
+        self._loaded = true;
       }
     } catch(e) {
       console.error(e);
@@ -153,7 +140,6 @@ Sound.prototype.setNumberOfLoops = function(value) {
 
 Sound.prototype.getCurrentTime = function(callback) {
   if (this._loaded) {
-    // RNSound.getCurrentTime(this._key, callback);
     let self = this;
     (async function() {
       try {
